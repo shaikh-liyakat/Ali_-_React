@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import CurrencyConverter from './components/CurrencyConverter'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-  <h1 className='bg-amber-600' > Currency Conerter Via Api</h1>
+      {/* <h1 className='bg-amber-600' > Currency Conerter Via Api</h1> */}
+      <CurrencyConverter amount={153} options={["USD", "INR", "PAK", "BANG"]}  />
     </>
-  )
+  );
 }
 
 export default App
