@@ -1,11 +1,14 @@
-import { useState } from 'react'
-import './App.css'
-import CurrencyConverter from './components/CurrencyConverter'
-import Apicall from './calls/Apicall';
-
+import { useState } from "react";
+import "./App.css";
+import CurrencyConverter from "./components/CurrencyConverter";
+import Apicall from "./calls/Apicall";
 
 function App() {
-  const apiCall = Apicall("inr")
+  const apiCall = Apicall();
+  console.log("api call response", apiCall);
+
+  const currency_keys = Object.keys(apiCall);
+  console.log(currency_keys);
 
   // const [currencyVal, setcurrencyVal] = useState(apiCall);
   return (
@@ -13,9 +16,12 @@ function App() {
       <div className="w-full flex align-middle justify-center">
         {/* <h1 className='bg-amber-600' > Currency Conerter Via Api</h1> */}
 
+        <CurrencyConverter amount={153} options={currency_keys} />
         <CurrencyConverter
           amount={153}
-          options={["USD", "INR", "PAK", "BANG"]}
+          inputdisable={true}
+          label="TO"
+          options={currency_keys}
         />
         {/* {currencyVal} */}
       </div>
@@ -23,4 +29,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

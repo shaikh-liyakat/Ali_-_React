@@ -1,28 +1,33 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState } from "react";
+import { useEffect } from "react";
 
-function Apicall(currency="usd"){
+function Apicall(currency = "usd") {
+  let [data, setdata] = useState({});
 
- let [data , setdata ]= useState({})
-//  const date
+  //  const date
 
- useEffect(()=>{
-//   fetch(`https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`).then((resp)=>{
-//  return resp.json()
-//   }).then((resp)=>{
-// console.log("currency",resp)
-// console.log("curency val with key",resp.currency)
-//   })
+  useEffect(() => {
+    //   fetch(`https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`).then((resp)=>{
+    //  return resp.json()
+    //   }).then((resp)=>{
+    // console.log("currency",resp)
+    // console.log("curency val with key",resp.currency)
+    //   })
 
+    fetch(
+      `https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setdata(res[currency]);
+      });
+    // console.log();
+  }, [currency]);
 
-  fetch(
-    `https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`)
-    .then((res) => res.json())
-    .then((res) => setdata(res.currency));
- },[currency])
-
- console.log("api data", data?.data);
-return data
+  console.log("api data", data[currency]);
+  return data;
 }
 
-export default Apicall
+export default Apicall;
